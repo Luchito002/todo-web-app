@@ -5,8 +5,9 @@ import { CiSun } from "react-icons/ci";
 import { HiOutlineCalendarDays } from "react-icons/hi2";
 import { CiBoxList } from "react-icons/ci";
 import { FaCheckCircle } from "react-icons/fa";
-import SidebarItem from "./sidebar-item";
+import SidebarItem from "@/components/SidebarItem";
 import { useState } from "react";
+import UserProfileInfo from "@/components/UserProfileInfo";
 
 const menuItems = [
   { icon: <CiSun size={24} color="yellow" />, label: "Today" },
@@ -16,25 +17,34 @@ const menuItems = [
 ];
 
 export default function Sidebar() {
-  const [menuIsVisible, setMenuIsVisible] = useState<boolean>(false)
+  const [menuIsVisible, setMenuIsVisible] = useState<boolean>(false);
+
   return (
     <>
       <button
         type="button"
         className={`w-auto items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden`}
-        onClick={() => {setMenuIsVisible(true)}}
+        onClick={() => { setMenuIsVisible(true) }}
       >
         <span className="sr-only">Open sidebar</span>
         <TiThMenuOutline size={32} />
       </button>
 
-      <aside className="hidden sm:flex top-0 left-0 h-screen z-40 flex-col justify-center items-center transition-transform -translate-x-full sm:translate-x-0 ml-16">
+
+      <aside className="hidden sm:flex top-0 left-0 h-screen z-40 flex-col justify-center items-center transition-transform -translate-x-full sm:translate-x-0 ml-16 gap-4">
+
+        <UserProfileInfo />
+
         <ul className='bg-box border border-border w-64 px-2 py-4 rounded grid gap-2'>
           {menuItems.map((item, index) => (
             <SidebarItem key={index} icon={item.icon} label={item.label} />
           ))}
         </ul>
+
       </aside>
+
+
+      {/* responsive for mobiles*/}
 
       {menuIsVisible &&
         <span

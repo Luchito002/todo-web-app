@@ -1,4 +1,4 @@
-import Container from "../ui/container";
+import Container from "../../../components/Container";
 
 export default function Task() {
   return (
